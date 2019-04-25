@@ -4,6 +4,38 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
 
+  constructor(){
+    super()
+    this.state={
+      currSelection: ''
+    }
+  }
+
+  onMenuClick=(e)=>{
+    if(e.target.id==="Photos"){
+      this.setState({currSelection: "Photos"})
+    }else if (e.target.id==="Profile"){
+      this.setState({currSelection: "Profile"})
+    }else if (e.target.id==="Cocktail"){
+      this.setState({currSelection: "Cocktails"})
+    }else{
+      this.setState({currSelection: "Pokemon"})
+    }
+  }
+
+  pickMethod=()=>{
+   if(this.state.currSelection==="Photos"){
+     return <Photos/>
+   }
+   else if(this.state.currSelection==="Profile"){
+     return <Profile/>
+   }
+   else if(this.state.currSelection==="Cocktails"){
+     return <Cocktails />
+   }else{
+     return <Pokemon />
+   }
+  }
 
   render() {
 
@@ -13,12 +45,12 @@ class MainBox extends React.Component {
 
     */
 
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
+    const selection=this.pickMethod()
 
     return (
       <div>
-        <MenuBar />
-        {detailsToDisplay}
+        <MenuBar onMenuClick={this.onMenuClick} />
+        {selection}
       </div>
     )
   }

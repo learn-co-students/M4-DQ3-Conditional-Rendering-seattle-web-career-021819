@@ -28,7 +28,6 @@ export const Photos = () => (
 
 
 export const Cocktails = () => {
-
   const cocktailsElements = cocktails.drinks.map((drink, idx) => (
     <li key={idx}>
     	<h5>Name: {drink.name}</h5>
