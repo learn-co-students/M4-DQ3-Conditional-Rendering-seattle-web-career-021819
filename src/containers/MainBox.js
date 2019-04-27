@@ -4,20 +4,56 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
 class MainBox extends React.Component {
 
+  constructor(props){
+    super(props)
+    this.state = ({selection: ""})
+    this.onSelection = this.onSelection.bind(this)
+    this.updateState = this.updateState.bind(this)
+  }
+
+  onSelection(event){
+    console.log(event.target.id)
+    if(event.target.id === 'profile'){
+      this.setState({selection: "Profile"})
+      return <Profile/>
+    } else if (event.target.id === 'photo') {
+      this.setState({selection: "Photo"})
+      return <Photos/>
+    } else if (event.target.id === 'cocktail') {
+      this.setState({selection: "Cocktail"})
+      return <Cocktails/>
+    } else {
+      this.setState({selection: "Pokemon"})
+      return <Pokemon/>
+    }
+  }
+
+  updateState(){
+    if(this.state.selection === 'Profile'){
+
+      return <Profile/>
+    } else if (this.state.selection === 'Photo') {
+
+      return <Photos/>
+    } else if (this.state.selection === 'Cocktail') {
+
+      return <Cocktails/>
+    } else {
+
+      return <Pokemon/>
+    }
+  }
+
 
   render() {
 
-    /*
+  const detailsToDisplay = this.updateState()
 
-    Replace the code below! Depending on what menu item is selected in the menu, I should render either a Profile, Photos, Cocktails, or Pokemon component.Think of a way to track which menu item was selected. Which component should have state? Which component should have methods to control state? Where should these methods be called?
-
-    */
-
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
+    //const detailsToDisplay = <div>Hi, I'm a div!</div>
 
     return (
       <div>
-        <MenuBar />
+        <MenuBar onSelection={this.onSelection}/>
         {detailsToDisplay}
       </div>
     )
